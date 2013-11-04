@@ -17,13 +17,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Create graph from theme
+	graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
+//	CPTTheme *theme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
+   	CPTTheme *theme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
+	[graph applyTheme:theme];
+	CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.view;
+	hostingView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
+	hostingView.hostedGraph = graph;
+    
+    
+    graph.plotAreaFrame.paddingLeft = 70.0;
+	graph.plotAreaFrame.paddingTop = 20.0;
+	graph.plotAreaFrame.paddingRight = 20.0;
+	graph.plotAreaFrame.paddingBottom = 40.0;
+    
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 @end
